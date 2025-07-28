@@ -1,0 +1,24 @@
+<!-- templates/user_dashboard.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>User Dashboard</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body class="bg-light">
+  <div class="container mt-4">
+    <h2 class="mb-4">Welcome, {{ session.get('user') }}</h2>
+    
+    <div class="d-grid gap-2 col-6 mx-auto">
+      <a href="{{ url_for('main_routes.user_view_lots') }}" class="btn btn-primary">🚗 Book a Parking Spot</a>
+      <!-- (Optional future) -->
+      <!-- <a href="{{ url_for('main_routes.view_user_history') }}" class="btn btn-info">📜 My Booking History</a> -->
+      <a href="{{ url_for('main_routes.logout') }}" class="btn btn-danger mt-3">🚪 Logout</a>
+      <a href="{{ url_for('main_routes.vacate_spot') }}" class="btn btn-warning">🚪 Vacate My Spot</a>
+      <a href="{{ url_for('main_routes.view_user_history') }}" class="btn btn-info">📜 My Booking History</a>
+
+
+    </div>
+  </div>
+</body>
+</html>

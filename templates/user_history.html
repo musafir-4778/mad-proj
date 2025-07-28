@@ -1,0 +1,55 @@
+<!-- templates/user_history.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>My Parking History</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body class="bg-light">
+  <div class="container mt-4">
+    <h2 class="mb-4">📜 My Parking History</h2>
+    {% if reservations %}
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Lot</th>
+            <th>Floor</th>
+            <th>Spot #</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+            <th>Cost (₹)</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for res in reservations %}
+            <tr>
+              <td>{{ res.spot.lot.name }}</td>
+              <td>{{ res.spot.lot.floor }}</td>
+              <td>{{ res.spot.spot_number }}</td>
+              <td>{{ res.parking_time.strftime('%Y-%m-%d %H:%M') }}</td>
+              <td>
+                {% if res.leaving_time %}
+                  {{ res.leaving_time.strftime('%Y-%m-%d %H:%M') }}
+                {% else %}
+                  <span class="text-danger">Active</span>
+                {% endif %}
+              </td>
+              <td>
+                {% if res.cost %}
+                  ₹{{ res.cost }}
+                {% else %}
+                  —
+                {% endif %}
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <p>No past reservations found.</p>
+    {% endif %}
+
+    <a href="{{ url_for('main_routes.user_dashboard') }}" class="btn btn-secondary mt-3">← Back to Dashboard</a>
+  </div>
+</body>
+</html>
