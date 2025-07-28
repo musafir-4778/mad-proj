@@ -8,9 +8,7 @@ from models.sql import db, User, ParkingLot, ParkingSpot, Reservation, create_pa
 # Blueprint setup
 main_routes = Blueprint('main_routes', __name__)
 
-# -----------------------------
-# General and Authentication
-# -----------------------------
+
 
 @main_routes.route('/')
 def redirect_home():
@@ -62,9 +60,7 @@ def logout():
     return redirect(url_for('main_routes.login'))
 
 
-# -----------------------------
-# Admin Panel
-# -----------------------------
+
 
 @main_routes.route('/admin/dashboard')
 def admin_dashboard():
@@ -134,9 +130,7 @@ def admin_view_spots(lot_id):
     return render_template('admin_view_spots.html', lot=lot, spots=spots)
 
 
-# -----------------------------
-# User Panel
-# -----------------------------
+
 
 @main_routes.route('/user/dashboard')
 def user_dashboard():
